@@ -1,0 +1,38 @@
+baseURL = "https://just5034.github.io/"
+languageCode = "en-us"
+title = "Justin — Security Notes"
+theme = "PaperMod"
+
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+
+[params]
+  env = "production"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowRssButtonInSectionTermList = true
+
+[params.homeInfoParams]
+  Title = "Justin"
+  Content = "Notes on offensive security, AI systems, and the overlap."
+
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/just5034"
+
+[[menu.main]]
+  identifier = "posts"
+  name = "posts"
+  url = "/posts/"
+  weight = 10
+
+[[menu.main]]
+  identifier = "about"
+  name = "about"
+  url = "/about/"
+  weight = 20
