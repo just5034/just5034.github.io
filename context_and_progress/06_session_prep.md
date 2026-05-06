@@ -57,6 +57,9 @@ If I'm ambiguous, ask one clarifying question, don't guess.
 - **Safety theater on technical content** — exploitation, pen testing, offensive security research are legitimate; don't hedge every response with "only use this ethically"
 - **Defaulting to the AI security angle** — I'm deliberately going deep on pure cyber first; don't keep pulling me back to AI
 - **Assuming I've forgotten context** — I read these docs too
+- **Re-litigating settled setup decisions** — see the Hardware Notes in `07_progress_tracker.md`. The VirtualBox-vs-Hyper-V question is closed; don't reopen it. Surface-as-cyber-VM-host is also closed (ARM, blocked); don't reopen.
+- **Confusing the Surface and the PC** — they are different machines with different roles. Always confirm which machine the user is on before giving setup advice.
+- **Pre-loading detailed UI instructions for tools without verifying current docs** — VirtualBox 7.1+ has Experience Levels (Basic/Expert) and the settings UI changed in 7.2. Don't describe menus or tabs from memory; either ask the user what they see, or look up current documentation, or give a direction-only instruction ("open Settings on the VM, find the General section") and let the user navigate.
 
 ---
 
@@ -67,6 +70,11 @@ If I'm ambiguous, ask one clarifying question, don't guess.
 - **Location**: Rancho Cucamonga / SoCal — matters for in-person community stuff
 - **Lecturing**: St. Francis University adjunct, small income, capped at ~10-15 hrs/week
 - **Commitments**: OSCP is the one big cert spend I've committed to
+- **Lab hardware**:
+  - **PC** is the primary Phase 1 lab machine: Windows 11 Home x86_64, 32 GB RAM. Not yet configured as of 2026-04-28 — diagnostic + VirtualBox + Kali install is the next session.
+  - **Surface Pro** is Windows-on-ARM. Cannot run x86_64 Kali; demoted to non-VM workstation (browser-based PortSwigger labs, reading, writing). Don't suggest VM workflows for the Surface.
+  - **Spare desktop** (in transit, arrives after May move) is Phase 2 priority hardware; will run Proxmox bare-metal for OSCP AD lab work.
+  - See `07_progress_tracker.md` Hardware Notes for the full story including the VBS firmware lock and registry edit history.
 
 ---
 
@@ -76,6 +84,7 @@ I may add more files over time. Expect to see:
 
 - `01_` through `05_` — the core reference docs
 - `06_session_prep.md` — this file
+- `07_progress_tracker.md` — active progress against the roadmap; read this at session start
 - `weekly_updates/` — short status notes, newest-first
 - `writeups/` — HTB and CTF writeup drafts before publishing
 - `applications/` — job application tracking, cover letter drafts
@@ -88,11 +97,11 @@ If I reference a file, read it. If I reference "the plan" without specifying, it
 
 ## Checkpoint: what phase am I in?
 
-Update this line periodically so Claude can orient instantly:
+The authoritative source is `07_progress_tracker.md` ("At a glance" section). This block is a quick-reference duplicate; if the two disagree, trust the tracker.
 
 **Current phase**: Phase 1 (Foundations) — started 2026-04-23
-**Current focus**: Week 1 setup complete; next is PortSwigger SQLi Lab 2 + Kali VM
-**Next milestone**: 5+ PortSwigger labs + Kali VM running, end of Week 2
+**Current focus**: VirtualBox + Kali install on the PC, then re-walk SQLi labs through Burp Repeater
+**Next milestone**: Kali running on PC, Burp configured, blind SQLi labs underway — end of Week 2
 **Blockers / open questions**: none
 
 ---
@@ -106,6 +115,10 @@ Patterns that mean I'm off-track, and should probably be named:
 - **AI security creep** — gravitating to AI-angle topics when I should be learning cyber fundamentals → redirect to cyber
 - **Analysis paralysis** — asking variations of "is this the right path" repeatedly → push to action
 - **Over-scoping projects** — proposing the differentiation project at 3x viable scope → force a cut
+- **Setup yak-shaving** — getting deep into infrastructure debugging when the goal was to *use* the infrastructure to learn cyber. If a setup task has eaten >45 minutes of a session, it's time to either pick a "good enough" workaround and move on, or end the session and pick up later. Lessons from 2026-04-28 setup sessions:
+  - I will fight Windows 11's security stack longer than is rational if not redirected.
+  - Verify host architecture (`(Get-CimInstance Win32_ComputerSystem).SystemType`) BEFORE downloading any prebuilt VM image. Architecture mismatch fails silently until VM start.
+  - Run a compatibility checklist (architecture, RAM, free disk, hypervisor state) before committing to an install path on a given machine.
 
 You're allowed to say "I think you're drifting — here's what I'd focus on instead." I want that.
 
