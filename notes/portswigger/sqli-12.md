@@ -1,4 +1,4 @@
-## Lab: Lab: Blind SQL injection with conditional errors
+## Lab: Blind SQL injection with conditional errors
 
 **Difficulty:** Practitioner
 **Topic:** SQLi
