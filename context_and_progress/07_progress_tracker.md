@@ -6,12 +6,14 @@ Active reference for where I am against the roadmap. Update this file at the end
 
 ## At a glance
 
+> **▶ NEXT SESSION — START HERE:** Begin the Networking track (reading spine: **Kurose & Ross, *Computer Networking: A Top-Down Approach***). Read **Chapter 1** — the layered model + encapsulation, edge vs core, delay/loss. Then the Ch 1 hands-on: install Wireshark on the PC, capture one packet, and identify each layer's header (encapsulation made real). The full chapter-by-chapter plan, red-team depth calibration, per-chapter exercises, and the **tutor protocol** live in `context_and_progress/08_networking_study_plan.md`. Talk to me (Claude) as your tutor when you start/finish a chapter — I'll run active recall, the red-team "so-what," and hand you the exercises.
+
 - **Current phase:** Phase 1 (Foundations)
 - **Started:** 2026-04-23
-- **Last updated:** 2026-04-28
-- **Current focus:** Burp Suite first-run config + browser proxy + cert install on Kali, then re-walk SQLi Lab 1 in Repeater. Then blind SQLi labs.
-- **Next milestone:** Kali VM running on the PC, Burp configured, blind SQLi labs underway — by end of Week 2
-- **Blockers / open questions:** none
+- **Last updated:** 2026-09-14
+- **Current focus:** SQLi track reviewed and consolidated (16 labs; the 2 out-of-band labs deferred as Burp Pro-gated, technique captured in `notes/portswigger/sqli-oob-dns-reference.md`). **Deliberately pivoting to the Networking track before Authentication** — the web-exploitation material (OOB DNS, TLS/Burp interception, SSRF later) will click harder once the network fundamentals are solid. Reading spine is Kurose & Ross; the plan is **scoped for red-team relevance, not full network-engineering depth** — detailed chapter arc, depth flags, exercises, and the Claude tutor protocol are in `08_networking_study_plan.md`.
+- **Next milestone:** Networking fundamentals via Kurose & Ross (Top-Down), red-team-scoped — work the chapter arc + hands-on in `08_networking_study_plan.md` to its exit criteria, then return to the Authentication track.
+- **Blockers / open questions:** Roadmap dates are stale — Phase 2 (OSCP sprint) was slotted for June–August, which passed during the stall. The phase timeline needs a re-plan in a dedicated session; not blocking today's web-security work.
 
 ---
 
@@ -41,11 +43,11 @@ State of the machines for cyber lab work, so this doesn't get re-litigated sessi
 - **Hardware/registry state from earlier session (2026-04-28):** HVCI / Memory Integrity disabled via registry; Windows Hello DeviceGuard scenario disabled (PIN login still works); VBS still running because System Guard Secure Launch is firmware-locked. These edits do no harm; leave them. Does not affect any non-VM workflow.
 - **VirtualBox + Extension Pack:** installed but useless for x86 VMs on this hardware. Leave installed or uninstall — preference call.
 
-### Spare desktop (32 GB RAM, 1 TB+ SSD) — **Phase 2 priority hardware**
+### Spare desktop (32 GB RAM, 1 TB+ SSD) — **Phase 2 priority hardware, now on hand**
 
-- Currently in transit logistics; arrives in California after May move.
+- **On hand as of 2026-09-09** — moved home to California; both desktops (primary PC + this spare) are now physically accessible. No longer in transit. Ready for the Proxmox bare-metal build.
 - Will run **Proxmox bare-metal** for OSCP AD lab work. Bare-metal Type 1 hypervisor sidesteps all the Windows VBS nonsense entirely — no host OS competing for VT-x.
-- BIOS pre-flight when it arrives:
+- BIOS pre-flight (do this first, before installing Proxmox):
   - Confirm Intel VT-x / AMD-V enabled
   - Confirm IOMMU / VT-d enabled (needed for PCI passthrough if used)
   - Look for any "VBS lock" / "Secure Launch" / firmware-level virtualization protections and ensure they're either off or compatible with Proxmox
@@ -65,6 +67,25 @@ Setup completed 2026-04-28. Surface can drive the PC's desktop and Kali's termin
 ---
 
 ## Recent log (newest first)
+
+### 2026-09-14 (SQLi consolidation + networking pivot)
+
+- Reviewed the SQLi labs end-to-end. Hit the two out-of-band (OAST) labs (*out-of-band interaction*, *out-of-band data exfiltration*) that were skipped in May behind the "Burp Collaborator wall."
+- Confirmed the wall is real and specific: Collaborator is **Burp Suite Professional-only**, and the labs firewall all OOB destinations except Burp's own `*.oastify.com`, so free alternatives (interactsh, webhook.site, self-hosted) cannot solve them. Decision: **skip for now** (do them in ~5 min each during a Burp Pro free trial later); the completion teaches nothing the notes don't already capture.
+- Wrote a full technique reference: `notes/portswigger/sqli-oob-dns-reference.md` — DNS-based OOB across all four DB types (Oracle `EXTRACTVALUE`+XXE, MSSQL `xp_dirtree`, MySQL `LOAD_FILE` Windows-only, PostgreSQL `COPY...TO PROGRAM`), why DNS is the reliable channel, what lands in the listener, DNS charset/length exfil constraints, defensive footnote.
+- **Strategic call:** consciously reordered — Networking track *before* Authentication. Writing the OOB note exposed that the network layer (recursive DNS, resolvers, egress paths, TLS interception) is the real gap. Still on-plan: Networking is a parallel Phase 1 track, previously at 1/11.
+- **Next session:** DNS resolution path reading + Wireshark Capture #1 (see the START HERE line and the Networking section).
+- Roadmap date re-plan (Phase 2 slipped past June–Aug during the stall) still deferred to a dedicated session; not touched today.
+
+### 2026-09-09 (re-entry session)
+
+- Returning after a ~4-month stall; last logged activity was 2026-05-08 (SQLi labs). No cyber progress June–August.
+- Reconciled the tracker with the actual state of `notes/portswigger/`: **16 SQLi labs solved, 13 of them Practitioner-tier**, including blind boolean, blind time-delay, and XML-encoding filter bypass (last batch 2026-05-08).
+- Phase 1 web-security deliverable (10+ labs) was exceeded back in May; the header block just never got updated.
+- Confirmed repo is clean and deploys via GitHub Actions on push to `main`. Public content still minimal (About + placeholder post) by design.
+- Fixed stale checkboxes (blind SQLi, SQLi Practitioner, Kali set up) to reflect reality.
+- **Life/logistics update:** graduated (MS Data Science, Columbia, May 2026) and moved home to California. Both desktops now physically accessible — the primary PC and the spare (32 GB / 1 TB+ SSD). The spare is no longer in transit; it is ready for the Phase 2 Proxmox bare-metal build. This unblocks hands-on network engineering and multi-VM AD/lab work that a single NEM-mode VirtualBox VM could not support.
+- **Next session:** one warm-up blind-SQLi re-walk, then begin the Authentication track. Separately, re-plan the roadmap dates.
 
 ### 2026-04-29 (6th, sesion)
 
@@ -121,7 +142,9 @@ Setup completed 2026-04-28. Surface can drive the PC's desktop and Kali's termin
 
 ### Networking
 
-Goal: make TCP/IP, DNS, HTTP, TLS, and routing feel intuitive, not memorized.
+**▶ ACTIVE TRACK as of 2026-09-14.** Detailed, red-team-scoped plan now lives in **`08_networking_study_plan.md`** (reading spine: Kurose & Ross, *Top-Down Approach*; chapter arc Ch 1→8 with CORE/SKIM/SKIP depth flags, per-chapter offensive "so-what" and exercises, exit criteria, and the Claude tutor protocol). The checklist below is the high-level view; `08` is authoritative for the how. Beej is repositioned to optional/later (it's the sockets-programmer's view of L4, not the general networking spine).
+
+Goal: make TCP/IP, DNS, HTTP, TLS, and routing feel intuitive, not memorized — at red-team-relevant depth, not network-engineer depth.
 
 - [x] HTTP fundamentals (MDN HTTP overview, HTTP Messages, including HTTP/2 and /3)
 - [ ] Beej's Guide to Network Programming, chapters 1–5 (free online)
@@ -165,9 +188,9 @@ Phase 1 deliverable: 10+ labs total. Phase 2 deliverable: cumulative depth acros
 
 - [x] **SQLi Apprentice labs 1–10** complete (through UNION attacks) — done in browser only, no Burp
 - [x] Re-walk SQLi Lab 1 (or another solved lab) in Burp Repeater once Kali is up on PC — validate Burp workflow
-- [ ] SQLi Blind injection labs (Burp essentially required from here, so blocked on PC Kali install)
-- [ ] SQLi Practitioner labs
-- [ ] Authentication track
+- [x] SQLi Blind injection labs (boolean, time-delay done 2026-05-08; 2 out-of-band labs deferred — Burp Pro-gated, technique in `notes/portswigger/sqli-oob-dns-reference.md`)
+- [x] SQLi Practitioner labs (13 Practitioner labs solved, through XML-encoding filter bypass, 2026-05-08)
+- [ ] Authentication track — *sequenced after the Networking track (see Current focus / Networking section)*
 - [ ] Access control track
 - [ ] XSS track
 - [ ] SSRF track
@@ -202,7 +225,7 @@ HTB and TryHackMe come into play seriously in Phase 2; in Phase 1 the goal is ju
 
 - [x] Personal security blog live
 - [x] 10+ PortSwigger labs completed
-- [ ] Kali VM set up and comfortable (deferred to PC; Surface is ARM, blocked)
+- [x] Kali VM set up and comfortable (VirtualBox 7 on PC, snapshot taken 2026-04-28)
 - [ ] HTB account with 3–5 starter boxes completed
 
 ---
@@ -224,9 +247,9 @@ Light tracking now; expand when phase begins.
 - [ ] 25+ HTB machines completed total
 - [ ] 10+ retired HTB machine writeups published on blog
 
-### Spare desktop / Proxmox lab — **build in early June after move**
+### Spare desktop / Proxmox lab — **build now (hardware on hand as of 2026-09-09)**
 
-This becomes essential, given the PC is in NEM mode (assuming VBS firmware lock matches Surface) and the Surface is ARM. The spare desktop is the only path to native-VT-x performance for AD lab work.
+This becomes essential, given the PC is in NEM mode (assuming VBS firmware lock matches Surface) and the Surface is ARM. The spare desktop is the only path to native-VT-x performance for AD lab work. It has arrived and is ready to build — this is the enabler for the hands-on network engineering / AD / multi-VM work now in reach.
 
 - [ ] BIOS pre-flight: VT-x / AMD-V enabled; IOMMU / VT-d enabled; check for and disable any firmware VBS / Secure Launch toggles
 - [ ] Install Proxmox bare-metal (Type 1, no Windows host competing for the hypervisor)

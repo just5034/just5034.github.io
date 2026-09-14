@@ -2,11 +2,11 @@
 
 ## Who I am
 
-I'm Justin, an AI/ML engineer and researcher completing an MS in Data Science at Columbia University (graduating May 2026). I'm pivoting into cybersecurity — specifically, I want to learn the "pure" cyber craft deeply before connecting it to my AI work.
+I'm Justin, an AI/ML engineer and researcher with an MS in Data Science from Columbia University (graduated May 2026). I'm pivoting into cybersecurity — specifically, I want to learn the "pure" cyber craft deeply before connecting it to my AI work.
 
 ## Professional background
 
-- **Current**: MS Data Science, Columbia (graduating May 2026)
+- **Current**: MS Data Science, Columbia (graduated May 2026)
 - **Prior roles**:
   - AI Agent Researcher/Engineer at Quome (LangChain, LangGraph, Temporal, benchmarking)
   - ML Engineer at New Atlantis Labs (genomic foundation models, taxonomy classifiers)
@@ -21,7 +21,7 @@ I'm Justin, an AI/ML engineer and researcher completing an MS in Data Science at
 - Living with parents post-graduation → financially stable for now, but want to contribute (house payments, family support)
 - Starting adjunct lecturing at St. Francis University after graduation — small income, want to cap at ~10-15 hrs/week so it doesn't eat my cyber study time
 - Also targeting Chaffey Community College for future lecturing
-- Have a spare desktop (32GB RAM, 1TB+ SSD) earmarked for a Proxmox-based home lab in Phase 2 (OSCP AD prep). Currently in transit logistics — set up after May move to California.
+- Have a spare desktop (32GB RAM, 1TB+ SSD) earmarked for a Proxmox-based home lab (OSCP AD prep). Now on hand after the move home to California — both desktops (primary PC + this spare) are physically accessible and ready for hands-on multi-VM lab work.
 
 ## Career goal
 

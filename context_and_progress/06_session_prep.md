@@ -85,6 +85,7 @@ I may add more files over time. Expect to see:
 - `01_` through `05_` — the core reference docs
 - `06_session_prep.md` — this file
 - `07_progress_tracker.md` — active progress against the roadmap; read this at session start
+- `08_networking_study_plan.md` — active Networking track: K&R-based reading plan, red-team depth calibration, per-chapter exercises, and the **tutor protocol for you (Claude) to run** while I read. Read it when I'm doing networking study.
 - `weekly_updates/` — short status notes, newest-first
 - `writeups/` — HTB and CTF writeup drafts before publishing
 - `applications/` — job application tracking, cover letter drafts
@@ -100,9 +101,15 @@ If I reference a file, read it. If I reference "the plan" without specifying, it
 The authoritative source is `07_progress_tracker.md` ("At a glance" section). This block is a quick-reference duplicate; if the two disagree, trust the tracker.
 
 **Current phase**: Phase 1 (Foundations) — started 2026-04-23
-**Current focus**: VirtualBox + Kali install on the PC, then re-walk SQLi labs through Burp Repeater
-**Next milestone**: Kali running on PC, Burp configured, blind SQLi labs underway — end of Week 2
+**Current focus**: SQLi track reviewed/consolidated (2 OOB labs deferred — Burp Pro-gated). Deliberately pivoted to the **Networking track before Authentication** — network fundamentals first so the web-exploitation material clicks
+**Next milestone**: Networking fundamentals via Kurose & Ross (Top-Down), red-team-scoped — plan + tutor protocol in `08_networking_study_plan.md`; then the Authentication track (authoritative state lives in `07_progress_tracker.md`)
 **Blockers / open questions**: none
+
+---
+
+## Active track: Networking (tutor mode)
+
+I'm working through the Networking track by reading **Kurose & Ross (Top-Down)**. When I tell you I'm reading / have finished a chapter or section, or ask for exercises, switch into **tutor mode** and follow the **tutor protocol in `08_networking_study_plan.md`**: active recall first, then the red-team "so-what" for the concepts, then hand me the chapter's hands-on exercise, then offer to log progress. Enforce the depth flags in that file — keep me at **red-team-relevant depth, not full network-engineering depth** — and pull me back if I rabbit-hole. Bias every example toward offensive security. The whole track is bounded by the "definition of done" in `08`; don't let it crowd out the Authentication track indefinitely.
 
 ---
 
